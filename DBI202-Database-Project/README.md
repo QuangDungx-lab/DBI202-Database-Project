@@ -8,14 +8,14 @@ SQL Server stores and queries events. It does **not** receive a webcam stream or
 
 ## Contents
 
-| Path | Owner | Purpose |
-|---|---|---|
-| `sql/01_member1_schema_seed.sql` | Member 1 | Database tables, constraints, indexes, and sample data |
-| `sql/02_member2_views_reporting.sql` | Member 2 | Views and reporting queries |
-| `sql/03_member3_procedures_functions.sql` | Member 3 | Stored procedures and scalar functions |
-| `sql/04_member4_triggers_integration_demo.sql` | Member 4 | Triggers, integration logging, and webcam/mock demo calls |
-| `docs/Test_Cases_and_Evidence_Checklist.md` | Whole team | Test plan and evidence to capture |
-| `docs/SmartSite_Lab5_Report_Template.docx` | Whole team | English report template to edit and submit |
+| Path                                        | Owner  | Purpose                                                   |
+| ------------------------------------------- | ------ | --------------------------------------------------------- |
+| `sql/CreateTable`                           |        | Database tables, constraints, indexes, and sample data    |
+| `sql/views_reporting.sql`                   |        | Views and reporting queries                               |
+| `sql/procedures_functions.sql`              |        | Stored procedures and scalar functions                    |
+| `sql/triggers_integration_demo.sql`         |        | Triggers, integration logging, and webcam/mock demo calls |
+| `docs/Test_Cases_and_Evidence_Checklist.md` | Group5 | Test plan and evidence to capture                         |
+| `docs/SmartSite_Lab5_Report_Template.docx`  | Group5 | English report template to edit and submit                |
 
 ## Assumptions to confirm before submission
 
