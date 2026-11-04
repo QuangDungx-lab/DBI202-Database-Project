@@ -15,3 +15,8 @@ BEGIN
     RETURN @TOTAL
 END
 GO
+
+--LỆNH THỰC THI 
+GO
+SELECT dbo.ufn_CountVisitsBySite('SITE-001')
+    AS VisitsBeforeInsert;

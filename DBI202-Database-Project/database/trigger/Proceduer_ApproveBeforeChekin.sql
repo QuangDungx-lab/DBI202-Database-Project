@@ -30,3 +30,21 @@ BEGIN
         (@ALERT_ID, @CAMERA_ID, @ALERT_TYPE, @DETECTED_AT, @STATUS, @SEVERITY)
 END
 GO
+
+GO
+
+-- THUC THI:
+EXEC dbo.usp_CreateSafetyAlert
+    @ALERT_ID = 'ALT-TEST-001',
+    @CAMERA_ID = 'CAM-001',
+    @ALERT_TYPE = N'Phát hiện vi phạm',
+    @DETECTED_AT = '2026-11-04 14:30:00',
+    @STATUS = N'NEW',
+    @SEVERITY = N'HIGH';
+
+GO
+
+-- KIEM TRA:
+SELECT *
+FROM dbo.SAFETY_ALERT
+WHERE alert_id = 'ALT-TEST-001';
