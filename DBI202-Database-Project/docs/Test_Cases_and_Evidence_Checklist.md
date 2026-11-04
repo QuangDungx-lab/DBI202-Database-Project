@@ -1,10 +1,10 @@
 # SmartSite Lab 5 Test Cases and Evidence Checklist
 
-Run tests after all four SQL scripts. Replace Expected Result with Actual Result and paste screenshots into the report.
+Run the scripts in the order listed in `../README.md`. Replace Expected Result with Actual Result and save screenshots under `docs/evidence/` before adding them to the report.
 
 | ID | Test | Action | Expected result | Evidence |
 |---|---|---|---|---|
-| TC01 | Schema setup | Run Member 1 script | Eleven agreed core tables, constraints, indexes, and demo rows are created | SSMS Object Explorer and SELECT screenshots |
+| TC01 | Schema setup | Run `database/01_schema/CreateTable.sql` | Thirteen schema tables, constraints, and indexes are created | SSMS Object Explorer screenshot |
 | TC02 | Reporting views | Run Member 2 report queries | Dashboard views return alert, detection, attendance, and incident data | Query result screenshots |
 | TC03 | Valid mock detection | Run Demo A in Member 4 script | One `AI_METADATA` row, one integration log row, and a high-confidence safety alert appear | Before/after results |
 | TC04 | Offline camera validation | Set a camera offline and call `usp_RecordDetectionEvent` | Procedure rejects the event with a clear error | Error message screenshot |

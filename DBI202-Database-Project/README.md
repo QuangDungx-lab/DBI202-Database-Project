@@ -1,55 +1,49 @@
-# SmartSite Lab 5 DBI202 Starter Pack
+# SmartSite DBI202 Lab 5
 
-This starter pack supports a four-member SQL Server project demo for a SmartSite construction-safety scenario.
+This project contains the SQL Server schema, sample data, database objects, reports, and demo workflow for the SmartSite construction-site scenario.
 
-## Important boundary
+## Project structure
 
-SQL Server stores and queries events. It does **not** receive a webcam stream or perform object detection by itself. A local webcam application, an AI service, or the included mock-event workflow must send a detection event to SQL Server. The database then records, validates, reports, and displays the result through a dashboard or query screen.
+```text
+database/
+  01_schema/              Database and table definitions
+  02_seed_data/            Sample data, split by data area
+  03_database_objects/     Functions and stored procedures
+  04_views_reports/        Views and report queries
+  05_triggers_demo/        Triggers and mock-event demonstration
+  06_queries/              Lab 5 query scripts
+  07_testing/               Repeatable SQL integration tests
+  _team_drafts/            Member drafts; not part of the run sequence
+diagrams/                  ERD and design diagrams
+docs/                      Test checklist and report template
+```
 
-## Contents
+## SQL run order
 
-| Path                                        | Owner  | Purpose                                                   |
-| ------------------------------------------- | ------ | --------------------------------------------------------- |
-| `sql/CreateTable`                           |        | Database tables, constraints, indexes, and sample data    |
-| `sql/views_reporting.sql`                   |        | Views and reporting queries                               |
-| `sql/procedures_functions.sql`              |        | Stored procedures and scalar functions                    |
-| `sql/triggers_integration_demo.sql`         |        | Triggers, integration logging, and webcam/mock demo calls |
-| `docs/Test_Cases_and_Evidence_Checklist.md` | Group5 | Test plan and evidence to capture                         |
-| `docs/SmartSite_Lab5_Report_Template.docx`  | Group5 | English report template to edit and submit                |
+Run the scripts in SQL Server Management Studio in this order:
 
-## Assumptions to confirm before submission
+1. `database/01_schema/CreateTable.sql`
+2. `database/02_seed_data/01_Core_Sample_Data.sql`
+3. `database/02_seed_data/02_Visitor_Visit_Sample_Data.sql`
+4. `database/03_database_objects/procedures_functions.sql`
+5. `database/04_views_reports/views_reporting.sql`
+6. `database/05_triggers_demo/triggers_integration_demo.sql`
+7. Run the approved query scripts under `database/06_queries/`.
+8. Run the SQL tests under `database/07_testing/` and capture evidence.
 
-The agreed project vocabulary is used: `CONTRACTOR`, `WORKER`, `CONSTRUCTION_SITE`, `ZONE`, `CAMERA`, `ASSIGNMENT`, `ATTENDANCE`, `SAFETY_CERTIFICATE`, `SAFETY_ALERT`, `INCIDENT`, and `AI_METADATA`. If the team chooses `SITE` instead of `CONSTRUCTION_SITE`, rename it consistently in **all** scripts and report diagrams before running the project. This pack does not invent fields or business rules beyond demo-friendly examples; review them with the group.
+The schema script creates `SmartSiteLab5` from scratch and drops an existing database of that name. Use it only for the class demo database. Run the core seed once on a fresh schema; it uses the initial identity values. The visitor/visit seed skips matching demo records and can be rerun.
 
-## SQL Server run order
+## Draft files
 
-1. Open SQL Server Management Studio (SSMS) with an account allowed to create a database.
-2. Run `01_member1_schema_seed.sql`.
-3. Run `02_member2_views_reporting.sql`.
-4. Run `03_member3_procedures_functions.sql`.
-5. Run `04_member4_triggers_integration_demo.sql`.
-6. Run the test cases in `docs/Test_Cases_and_Evidence_Checklist.md` and capture screenshots.
+Files under `database/_team_drafts/` are preserved for review and are not included in the run order. They contain different column names and key conventions from the current integrated schema. Reconcile each draft against `01_schema/CreateTable.sql` before promoting it into the run sequence.
 
-To reset the demo, re-run the complete four-script sequence from step 1. Do not run the first script on a production server because it drops only the demo database named `SmartSiteLab5` when it already exists.
+## Demo boundary
 
-## Demo workflow
+SQL Server stores and reports events. A webcam app, AI app, or clearly labelled mock action must create the event. Do not describe SQL Server as performing image detection.
 
-1. Start a local webcam preview or use a prerecorded/mock detection.
-2. Detection app sends event fields such as camera code, event type, confidence, detected label, timestamp, and optional safe image reference.
-3. The app calls `dbo.usp_RecordDetectionEvent`. For the no-AI fallback, run the mock call in Member 4's script.
-4. SQL Server saves `AI_METADATA`, creates a high-confidence safety alert where appropriate, and writes an integration log.
-5. Refresh dashboard views or run the reporting queries to show results.
+## Documentation
 
-Use only non-sensitive demo identifiers and image references. Do not store raw video, faces, or private footage in this sample database.
-
-## Suggested dashboard tiles
-
-- Open safety alerts by site and severity
-- Recent detections by camera
-- Attendance today
-- Incident status summary
-- Camera health and last event time
-
-## Team handoff rule
-
-Each member works primarily in the assigned SQL file. Before merging, run all four scripts in order on a clean `SmartSiteLab5` database. Object names are deliberately unique by responsibility to avoid collisions.
+- `TEAM_WORKFLOW_4_MEMBERS.md`: team responsibilities and integration workflow.
+- `docs/Test_Cases_and_Evidence_Checklist.md`: tests and evidence to capture.
+- `docs/SmartSite_Lab5_Report_Template.docx`: report template; edit separately when the team is ready.
+- `00_UNIFIED_PROJECT_STARTER.md`: earlier planning notes; use the integrated schema and this README for current file names and run order.
