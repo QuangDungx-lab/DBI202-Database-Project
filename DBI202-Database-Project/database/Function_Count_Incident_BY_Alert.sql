@@ -15,3 +15,4 @@ BEGIN
     RETURN @TOTAL
 END
 GO
+SELECT dbo.ufn_CountIncidentsByAlert('ALT001') AS TotalIncidents;

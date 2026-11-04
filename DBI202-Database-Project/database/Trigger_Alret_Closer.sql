@@ -20,3 +20,10 @@ BEGIN
     END
 END
 GO
+SELECT alert_id, status
+FROM dbo.SAFETY_ALERT
+WHERE status = N'CLOSED';
+
+UPDATE dbo.SAFETY_ALERT
+SET status = N'OPEN'
+WHERE alert_id = 'ALT-001';
